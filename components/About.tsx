@@ -73,7 +73,7 @@ const About: React.FC<AboutProps> = ({ t }) => {
             className="relative"
           >
             {/* Bio Box with Left Primary Border Only */}
-            <div className="rounded-3xl border-l-[6px] border-primary bg-[#0a0c0b]/80 p-8 md:p-10 shadow-2xl relative overflow-hidden group border border-white/5">
+            <div className="rounded-3xl border-l-[6px] border-l-primary border-t border-r border-b border-white/5 bg-[#0a0c0b]/80 p-8 md:p-10 shadow-2xl relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-1 h-full bg-primary blur-md opacity-20 group-hover:opacity-40 transition-opacity"></div>
               
               <p className="text-base md:text-lg text-gray-200 leading-relaxed font-body tracking-tight relative z-10">
