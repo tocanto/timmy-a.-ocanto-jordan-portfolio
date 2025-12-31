@@ -39,7 +39,7 @@ const About: React.FC<AboutProps> = ({ t }) => {
           <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full group-hover:bg-primary/20 transition-all duration-700"></div>
           <div className="relative rounded-[3rem] overflow-hidden border border-white/10 aspect-[4/5] bg-background-surface shadow-2xl">
             <img 
-              src="https://tocanto.dev/images/tocanto-profile-picture.png" 
+              src="https://tocanto.dev/images/tocanto-profile-picture.webp" 
               alt="Timmy Portrait"
               className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
             />

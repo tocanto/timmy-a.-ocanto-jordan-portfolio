@@ -5,7 +5,7 @@ export const PROJECTS: Project[] = [
     id: '1',
     title: 'Hispanus Group',
     description: 'E-commerce platform developed in WordPress for high-capacity power generators and solar energy solutions.',
-    image: 'https://tocanto.dev/images/portfolio/hispanus.png',
+    image: 'https://tocanto.dev/images/portfolio/hispanus.webp',
     tags: ['WORDPRESS', 'WOOCOMMERCE', 'PHP'],
     demoUrl: 'https://hispanus-group.com/',
     codeUrl: 'https://#'
@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
     id: '2',
     title: 'Molifer',
     description: 'WordPress e-commerce platform for specialized bell automation systems and liturgical electronic equipment.',
-    image: 'https://tocanto.dev/images/portfolio/molifer.png',
+    image: 'https://tocanto.dev/images/portfolio/molifer.webp',
     tags: ['WORDPRESS', 'WOOCOMMERCE', 'PHP'],
     demoUrl: 'https://molifer.com/',
     codeUrl: 'https://#'
@@ -23,7 +23,7 @@ export const PROJECTS: Project[] = [
     id: '3',
     title: 'FlutGPT',
     description: 'Cross-platform AI assistant built with Flutter and OpenAI API, featuring AdMob monetization and Firebase integration.',
-    image: 'https://tocanto.dev/images/portfolio/FlutGPT.png',
+    image: 'https://tocanto.dev/images/portfolio/FlutGPT.webp',
     tags: ['FLUTTER', 'DART', 'CHATGPT API'],
     demoUrl: 'https://github.com/tocanto/FlutGPT-Flutter-2.2',
     codeUrl: 'https://#'
@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
     id: '4',
     title: 'Waves Blockchain App',
     description: 'Decentralized application integrated with Waves protocol for secure asset management.',
-    image: 'https://tocanto.dev/images/portfolio/withdraw-vested.png',
+    image: 'https://tocanto.dev/images/portfolio/withdraw-vested.webp',
     tags: ['IONIC', 'REACT', 'TYPESCRIPT', 'WEB3'],
     demoUrl: 'https://tocanto.dev/WithdrawVested/',
     codeUrl: 'https://#'
@@ -41,7 +41,7 @@ export const PROJECTS: Project[] = [
     id: '5',
     title: 'Classic Games',
     description: 'Cross-platform gaming app built with Ionic React and Tailwind CSS, featuring classic arcade logic and interactive puzzles.',
-    image: 'https://tocanto.dev/images/portfolio/sliding-puzzle.png',
+    image: 'https://tocanto.dev/images/portfolio/sliding-puzzle.webp',
     tags: ['IONIC', 'REACT', 'TAILWIND CSS'],
     demoUrl: 'https://classic-games.tocanto.dev/',
     codeUrl: 'https://#'
@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
     id: '6',
     title: 'Clínica Dental Valle',
     description: "SEO-optimized corporate website built with WordPress and Elementor, strictly following Spain’s 'Kit Digital' technical compliance and visibility standards.",
-    image: 'https://tocanto.dev/images/portfolio/clinica-dental-valle.png',
+    image: 'https://tocanto.dev/images/portfolio/clinica-dental-valle.webp',
     tags: ['WORDPRESS', 'ELEMENTOR', 'SEO'],
     demoUrl: 'https://clinicadentalvalle.site/',
     codeUrl: 'https://#'
