@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project, Translation } from '../types';
-import { X } from 'lucide-react';
+import { X, Eye, Code } from 'lucide-react'; // Importamos los iconos necesarios
 
 interface ProjectCardProps {
   project: Project;
@@ -51,16 +50,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, t }) => {
               whileTap={{ scale: 0.9 }}
               onClick={toggleZoom}
               className="w-14 h-14 rounded-full bg-primary text-black flex items-center justify-center shadow-[0_0_20px_rgba(70,236,19,0.5)] transition-transform"
+              aria-label="Zoom Image"
             >
-              <span className="material-symbols-outlined text-3xl font-bold">visibility</span>
+              {/* Reemplazado Material Symbol por Lucide Eye */}
+              <Eye className="w-7 h-7" />
             </motion.button>
             <motion.button 
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleLinkClick}
               className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl transition-transform"
+              aria-label="View Code/Demo"
             >
-              <span className="material-symbols-outlined text-3xl font-bold">code</span>
+              {/* Reemplazado Material Symbol por Lucide Code */}
+              <Code className="w-7 h-7" />
             </motion.button>
           </div>
         </div>
@@ -104,6 +107,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, t }) => {
             <motion.button 
               className="absolute top-8 right-8 text-white hover:text-primary transition-colors z-[210]"
               onClick={toggleZoom}
+              aria-label="Close Zoom"
             >
               <X className="w-8 h-8" />
             </motion.button>
