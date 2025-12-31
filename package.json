@@ -9,8 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/manrope": "^5.2.8",
+    "@fontsource-variable/noto-sans": "^5.2.10",
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.475.0",
+    "material-symbols": "^0.40.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-tsparticles": "^2.12.2",

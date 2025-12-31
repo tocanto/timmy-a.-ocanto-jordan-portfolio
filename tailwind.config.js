@@ -20,8 +20,8 @@ export default {
         }
       },
       fontFamily: {
-        display: ["Manrope", "sans-serif"],
-        body: ["Noto Sans", "sans-serif"],
+        display: ["Manrope Variable", "Manrope", "sans-serif"],
+        body: ["Noto Sans Variable", "Noto Sans", "sans-serif"],
       }
     },
   },
