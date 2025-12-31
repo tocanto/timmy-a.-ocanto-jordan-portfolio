@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          // Si el scroll ha pasado un poco el inicio de la sección (offset 100px)
+          // Si el scroll ha pasado un poco el inicio de la sección (offset 150px)
           const rect = element.getBoundingClientRect();
           if (rect.top <= 150) { 
             current = section;
@@ -32,8 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
         }
       }
       
-      // Si no estamos en ninguna de las secciones internas, asumimos Home ('root')
-      // (O si estamos muy arriba en la página)
+      // Si estamos muy arriba en la página, asumimos Home ('root')
       if (window.scrollY < 100) {
         current = 'root';
       }
@@ -69,6 +68,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
         <div 
           className="flex items-center gap-2 text-white cursor-pointer group"
           onClick={(e) => {
+            // Fix: No pasamos el evento directamente si no es un anchor
             window.scrollTo({ top: 0, behavior: 'smooth' });
             setIsMobileMenuOpen(false);
           }}
@@ -103,6 +103,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
           <button 
             onClick={() => setLang(lang === 'EN' ? 'ES' : 'EN')}
             className="hidden md:flex items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group"
+            aria-label="Switch Language"
           >
             <span className="text-[10px] font-black tracking-widest text-gray-300 group-hover:text-primary transition-colors">
               {lang === 'EN' ? 'EN / ES' : 'ES / EN'}
@@ -110,8 +111,9 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
           </button>
           
           <button 
-            className="md:hidden text-white flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors"
+            className="md:hidden text-white flex items-center justify-center w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
