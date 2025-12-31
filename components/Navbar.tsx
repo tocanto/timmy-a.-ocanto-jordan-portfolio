@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Terminal, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language, Translation } from '../types';
@@ -12,6 +11,39 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('root');
+
+  // Lógica para detectar la sección activa al hacer scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['contact', 'portfolio', 'services', 'about'];
+      let current = 'root';
+
+      // Verificamos desde abajo hacia arriba o por posición
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          // Si el scroll ha pasado un poco el inicio de la sección (offset 100px)
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150) { 
+            current = section;
+            break; // Encontramos la más cercana al top
+          }
+        }
+      }
+      
+      // Si no estamos en ninguna de las secciones internas, asumimos Home ('root')
+      // (O si estamos muy arriba en la página)
+      if (window.scrollY < 100) {
+        current = 'root';
+      }
+
+      setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
@@ -20,6 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
+    setActiveSection(id); // Actualizar inmediatamente al hacer click
   };
 
   const navLinks = [
@@ -34,40 +67,50 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
     <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center py-6 px-4 pointer-events-none">
       <nav className="glass-panel rounded-full px-6 py-3 flex items-center justify-between gap-8 max-w-[850px] w-full shadow-2xl shadow-black/50 pointer-events-auto relative">
         <div 
-          className="flex items-center gap-2 text-white cursor-pointer"
+          className="flex items-center gap-2 text-white cursor-pointer group"
           onClick={(e) => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             setIsMobileMenuOpen(false);
           }}
         >
-          <Terminal className="w-5 h-5 text-primary" />
+          <Terminal className="w-5 h-5 text-primary group-hover:drop-shadow-[0_0_8px_rgba(70,236,19,0.6)] transition-all" />
           <h2 className="text-white text-lg font-bold tracking-tight">TOJ<span className="text-primary">.</span></h2>
         </div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6 lg:gap-8">
-          {navLinks.map((link) => (
-            <a 
-              key={link.id}
-              className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-all hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]" 
-              href={`#${link.id}`}
-              onClick={(e) => scrollToSection(e, link.id)}
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a 
+                key={link.id}
+                className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300
+                  ${isActive 
+                    ? 'text-primary drop-shadow-[0_0_5px_rgba(70,236,19,0.5)]' 
+                    : 'text-gray-400 hover:text-primary hover:drop-shadow-[0_0_5px_rgba(70,236,19,0.3)]'
+                  }
+                `}
+                href={`#${link.id}`}
+                onClick={(e) => scrollToSection(e, link.id)}
+              >
+                {link.name}
+              </a>
+            );
+          })}
         </div>
 
         <div className="flex items-center gap-4">
           <button 
             onClick={() => setLang(lang === 'EN' ? 'ES' : 'EN')}
-            className="hidden md:flex items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-white/5 border border-white/10 hover:border-primary/50 transition-colors"
+            className="hidden md:flex items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group"
           >
-            <span className="text-[10px] font-black tracking-widest text-primary">{lang === 'EN' ? 'EN / ES' : 'ES / EN'}</span>
+            <span className="text-[10px] font-black tracking-widest text-gray-300 group-hover:text-primary transition-colors">
+              {lang === 'EN' ? 'EN / ES' : 'ES / EN'}
+            </span>
           </button>
           
           <button 
-            className="md:hidden text-white flex items-center justify-center w-8 h-8 rounded-full bg-white/5"
+            className="md:hidden text-white flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -85,22 +128,30 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
             >
               <div className="absolute inset-0 bg-primary/5 pointer-events-none"></div>
               
-              {navLinks.map((link) => (
-                <a 
-                  key={link.id}
-                  className="text-sm font-black uppercase tracking-[0.3em] text-gray-400 hover:text-primary transition-colors py-2"
-                  href={`#${link.id}`}
-                  onClick={(e) => scrollToSection(e, link.id)}
-                >
-                  {link.name}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <a 
+                    key={link.id}
+                    className={`text-sm font-black uppercase tracking-[0.3em] transition-colors py-2
+                      ${isActive ? 'text-primary' : 'text-gray-400 hover:text-primary'}
+                    `}
+                    href={`#${link.id}`}
+                    onClick={(e) => scrollToSection(e, link.id)}
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
 
               <div className="h-px w-full bg-white/5 my-2"></div>
 
               <button 
-                onClick={() => setLang(lang === 'EN' ? 'ES' : 'EN')}
-                className="flex items-center justify-center rounded-full h-10 px-8 bg-primary text-black font-black text-[10px] tracking-[0.3em] uppercase w-full"
+                onClick={() => {
+                  setLang(lang === 'EN' ? 'ES' : 'EN');
+                  setIsMobileMenuOpen(false);
+                }}
+                className="flex items-center justify-center rounded-full h-10 px-8 bg-primary text-black font-black text-[10px] tracking-[0.3em] uppercase w-full shadow-[0_0_15px_rgba(70,236,19,0.3)]"
               >
                 {lang === 'EN' ? 'SPANISH' : 'ENGLISH'}
               </button>
