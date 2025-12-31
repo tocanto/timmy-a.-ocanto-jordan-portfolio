@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { SERVICES } from '../constants';
 import { Translation } from '../types';
+import { Terminal, Code2, Zap } from 'lucide-react';
 
 interface ServicesProps {
   t: Translation;
@@ -13,6 +13,16 @@ const Services: React.FC<ServicesProps> = ({ t }) => {
     e.preventDefault();
     const section = document.getElementById('portfolio');
     if (section) section.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Función para asignar iconos modernos
+  const getIcon = (index: number) => {
+    switch(index) {
+      case 0: return <Terminal className="text-4xl" />;
+      case 1: return <Code2 className="text-4xl" />;
+      case 2: return <Zap className="text-4xl" />; // Zap es el rayo para "Speed"
+      default: return <Code2 className="text-4xl" />;
+    }
   };
 
   return (
@@ -39,7 +49,8 @@ const Services: React.FC<ServicesProps> = ({ t }) => {
               className="glass-card p-10 rounded-3xl flex flex-col items-center text-center group border border-white/5 hover:border-primary/20 transition-all duration-300"
             >
               <div className={`w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:border-primary/50 transition-all ${service.accent}`}>
-                <span className="material-symbols-outlined text-4xl">{service.icon}</span>
+                {/* Icono reemplazado aquí */}
+                {getIcon(index)}
               </div>
               <h3 className="text-xl font-bold mb-4 tracking-tight group-hover:text-primary transition-colors">{itemContent.title}</h3>
               <p className="text-gray-400 font-body leading-relaxed text-sm">

@@ -1,23 +1,32 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Translation } from '../types';
+import { 
+  Code2, 
+  Terminal, 
+  Palette, 
+  Search, 
+  Cpu, 
+  FileCode, 
+  Box, 
+  Layers 
+} from 'lucide-react';
 
 interface AboutProps {
   t: Translation;
 }
 
 const About: React.FC<AboutProps> = ({ t }) => {
-  // Ordered technologies as requested: JavaScript (ES6+), TypeScript, React, WordPress, PHP, Tailwind CSS, Technical SEO, Web3
+  // Configuración de tecnologías con iconos de Lucide
   const techItems = [
-    { name: 'JavaScript (ES6+)', icon: 'js', symbol: 'code' },
-    { name: 'TypeScript', symbol: 'code' },
-    { name: 'React', symbol: 'code_blocks' },
-    { name: 'WordPress', symbol: 'terminal' },
-    { name: 'PHP', symbol: 'settings_input_component' },
-    { name: 'Tailwind CSS', symbol: 'palette' },
-    { name: t.nav.home === 'Inicio' ? 'SEO Técnico' : 'Technical SEO', symbol: 'search_insights' },
-    { name: 'Web3', symbol: 'token' },
+    { name: 'JavaScript (ES6+)', icon: 'js', component: null }, // Mantenemos tu badge JS personalizado
+    { name: 'TypeScript', component: <Code2 className="w-[18px] h-[18px]" /> },
+    { name: 'React', component: <Box className="w-[18px] h-[18px]" /> },
+    { name: 'WordPress', component: <Layers className="w-[18px] h-[18px]" /> },
+    { name: 'PHP', component: <Terminal className="w-[18px] h-[18px]" /> },
+    { name: 'Tailwind CSS', component: <Palette className="w-[18px] h-[18px]" /> },
+    { name: t.nav.home === 'Inicio' ? 'SEO Técnico' : 'Technical SEO', component: <Search className="w-[18px] h-[18px]" /> },
+    { name: 'Web3', component: <Cpu className="w-[18px] h-[18px]" /> },
   ];
 
   const scrollToServices = (e: React.MouseEvent) => {
@@ -95,7 +104,7 @@ const About: React.FC<AboutProps> = ({ t }) => {
                      {item.icon === 'js' ? (
                        <span className="font-black text-[10px] leading-none border border-current rounded-sm px-0.5">JS</span>
                      ) : (
-                       <span className="material-symbols-outlined text-[18px]">{item.symbol}</span>
+                       item.component
                      )}
                   </div>
                   <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">

@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Project, Translation } from '../types';
 import ProjectCard from './ProjectCard';
+import { ArrowUpRight } from 'lucide-react'; // Importación añadida
 
 interface ProjectGridProps {
   projects: Project[];
@@ -36,9 +36,8 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ projects, t }) => {
           className="flex items-center gap-2 text-sm font-black text-white border-b-2 border-primary/40 pb-1 hover:text-primary hover:border-primary transition-all group tracking-widest uppercase"
         >
           {t.portfolio.viewGithub} 
-          <span className="material-symbols-outlined text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
-            arrow_outward
-          </span>
+          {/* Icono reemplazado aquí */}
+          <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
         </a>
       </div>
 
