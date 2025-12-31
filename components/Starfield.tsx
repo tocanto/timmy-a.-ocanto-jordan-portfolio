@@ -1,4 +1,3 @@
-
 import React, { useCallback } from 'react';
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
@@ -13,8 +12,11 @@ const Starfield: React.FC = () => {
     <Particles
       id="tsparticles"
       init={particlesInit}
-      className="absolute inset-0 z-0 pointer-events-none"
+      // CLAVE: 'fixed' para cubrir todo, 'z-0' para verse sobre el fondo negro
+      className="fixed inset-0 z-0 pointer-events-none"
       options={{
+        // CLAVE: Desactiva el modo automático para evitar el CLS (salto de diseño)
+        fullScreen: { enable: false },
         background: {
           color: { value: "transparent" },
         },

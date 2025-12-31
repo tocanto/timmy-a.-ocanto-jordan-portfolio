@@ -2,7 +2,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Translation } from '../types';
-import Starfield from './Starfield';
 
 interface HeroProps {
   t: Translation;
@@ -19,7 +18,6 @@ const Hero: React.FC<HeroProps> = ({ t }) => {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center max-w-4xl mx-auto px-4 overflow-hidden">
-      <Starfield />
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
