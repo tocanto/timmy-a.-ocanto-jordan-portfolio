@@ -87,7 +87,7 @@ const Contact: React.FC<ContactProps> = ({ t }) => {
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500 uppercase font-bold">{t.contact.email}</div>
+                  <div className="text-xs text-gray-400 uppercase font-bold">{t.contact.email}</div>
                   {/* Ofuscación visual: Rompemos el string para confundir a los scrapers simples */}
                   <div className="text-sm font-medium flex gap-0.5">
                     <span>hola</span>
@@ -103,15 +103,15 @@ const Contact: React.FC<ContactProps> = ({ t }) => {
                   <LinkIcon className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
-                  <div className="text-xs text-gray-500 uppercase font-bold">{t.contact.socials}</div>
+                  <div className="text-xs text-gray-400 uppercase font-bold">{t.contact.socials}</div>
                   <div className="flex gap-4 mt-1">
-                    <a href="https://github.com/tocanto" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                    <a href="https://github.com/tocanto" target="_blank" rel="noopener noreferrer" aria-label="Visit my GitHub profile" className="hover:text-primary transition-colors">
                       <Github className="w-5 h-5" />
                     </a>
-                    <a href="https://linkedin.com/in/tocanto" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                    <a href="https://linkedin.com/in/tocanto" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile" className="hover:text-primary transition-colors">
                       <Linkedin className="w-5 h-5" />
                     </a>
-                    <a href="https://x.com/tocantodev" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                    <a href="https://x.com/tocantodev" target="_blank" rel="noopener noreferrer" aria-label="Visit my Twitter profile" className="hover:text-primary transition-colors">
                       <Twitter className="w-5 h-5" />
                     </a>
                   </div>
@@ -243,7 +243,7 @@ const Contact: React.FC<ContactProps> = ({ t }) => {
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white group-hover:text-primary transition-colors rotate-180">
           <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
         </svg>
-        <span className="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold group-hover:text-primary transition-colors">Top</span>
+        <span className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold group-hover:text-primary transition-colors">Top</span>
       </motion.button>
     </section>
   );
