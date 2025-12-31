@@ -69,7 +69,7 @@ const Hero: React.FC<HeroProps> = ({ t }) => {
         transition={{ repeat: Infinity, duration: 2 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-pointer group z-20"
       >
-        <span className="text-[10px] uppercase tracking-widest text-gray-400 font-bold group-hover:text-primary transition-colors">Scroll</span>
+        <span className="text-[10px] uppercase tracking-widest text-gray-300 font-bold group-hover:text-primary transition-colors">Scroll</span>
         <svg 
           width="20" 
           height="20" 
