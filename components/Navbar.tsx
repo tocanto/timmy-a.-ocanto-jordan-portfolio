@@ -23,16 +23,15 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          // Si el scroll ha pasado un poco el inicio de la sección (offset 150px)
           const rect = element.getBoundingClientRect();
+          // Ajuste de offset para mejor detección visual
           if (rect.top <= 150) { 
             current = section;
-            break; // Encontramos la más cercana al top
+            break;
           }
         }
       }
       
-      // Si estamos muy arriba en la página, asumimos Home ('root')
       if (window.scrollY < 100) {
         current = 'root';
       }
@@ -51,7 +50,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
-    setActiveSection(id); // Actualizar inmediatamente al hacer click
+    setActiveSection(id);
   };
 
   const navLinks = [
@@ -67,8 +66,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
       <nav className="glass-panel rounded-full px-6 py-3 flex items-center justify-between gap-8 max-w-[850px] w-full shadow-2xl shadow-black/50 pointer-events-auto relative">
         <div 
           className="flex items-center gap-2 text-white cursor-pointer group"
-          onClick={(e) => {
-            // Fix: No pasamos el evento directamente si no es un anchor
+          onClick={() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             setIsMobileMenuOpen(false);
           }}
@@ -103,13 +101,14 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
           <button 
             onClick={() => setLang(lang === 'EN' ? 'ES' : 'EN')}
             className="hidden md:flex items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group"
-            aria-label="Switch Language"
+            aria-label={lang === 'EN' ? 'Switch to Spanish' : 'Cambiar a Inglés'}
           >
             <span className="text-[10px] font-black tracking-widest text-gray-300 group-hover:text-primary transition-colors">
               {lang === 'EN' ? 'EN / ES' : 'ES / EN'}
             </span>
           </button>
           
+          {/* Botón Móvil Optimizado: w-12 h-12 (48px) para mejor UX táctil */}
           <button 
             className="md:hidden text-white flex items-center justify-center w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -126,7 +125,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              className="absolute top-20 left-0 right-0 glass-panel rounded-3xl p-8 flex flex-col gap-6 items-center shadow-2xl border border-white/10 md:hidden overflow-hidden"
+              className="absolute top-24 left-0 right-0 glass-panel rounded-3xl p-8 flex flex-col gap-6 items-center shadow-2xl border border-white/10 md:hidden overflow-hidden"
             >
               <div className="absolute inset-0 bg-primary/5 pointer-events-none"></div>
               
