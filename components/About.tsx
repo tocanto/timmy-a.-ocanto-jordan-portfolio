@@ -122,7 +122,7 @@ const About: React.FC<AboutProps> = ({ t }) => {
         onClick={scrollToServices}
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="flex flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity cursor-pointer group z-20 mt-10"
+        className="flex flex-col items-center gap-2 cursor-pointer group z-20 mt-10"
       >
         <span className="text-[10px] uppercase tracking-[0.3em] text-gray-300 font-bold group-hover:text-primary transition-colors">Scroll</span>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white group-hover:text-primary transition-colors">

@@ -234,13 +234,14 @@ const Contact: React.FC<ContactProps> = ({ t }) => {
         </div>
       </motion.div>
 
+      {/* --- BOTÓN TOP CORREGIDO (Sin opacidad, color sólido) --- */}
       <motion.button 
         onClick={scrollToTop}
         animate={{ y: [0, -10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="flex flex-col items-center gap-2 opacity-40 hover:opacity-100 transition-opacity cursor-pointer group z-20 mt-20"
+        className="flex flex-col items-center gap-2 cursor-pointer group z-20 mt-20"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white group-hover:text-primary transition-colors rotate-180">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-gray-300 group-hover:text-primary transition-colors rotate-180">
           <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
         </svg>
         <span className="text-[10px] uppercase tracking-[0.3em] text-gray-300 font-bold group-hover:text-primary transition-colors">Top</span>
