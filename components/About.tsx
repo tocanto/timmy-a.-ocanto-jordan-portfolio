@@ -19,14 +19,14 @@ interface AboutProps {
 const About: React.FC<AboutProps> = ({ t }) => {
   // Configuración de tecnologías con iconos de Lucide
   const techItems = [
-    { name: 'JavaScript (ES6+)', icon: 'js', component: null }, // Mantenemos tu badge JS personalizado
+    { name: 'JavaScript', icon: 'js', component: null }, // Mantenemos tu badge JS personalizado
     { name: 'TypeScript', component: <Code2 className="w-[18px] h-[18px]" /> },
     { name: 'React', component: <Box className="w-[18px] h-[18px]" /> },
     { name: 'WordPress', component: <Layers className="w-[18px] h-[18px]" /> },
     { name: 'PHP', component: <Terminal className="w-[18px] h-[18px]" /> },
     { name: 'Tailwind CSS', component: <Palette className="w-[18px] h-[18px]" /> },
-    { name: t.nav.home === 'Inicio' ? 'SEO Técnico' : 'Technical SEO', component: <Search className="w-[18px] h-[18px]" /> },
     { name: 'Web3', component: <Cpu className="w-[18px] h-[18px]" /> },
+    { name: t.nav.home === 'Inicio' ? 'SEO Técnico' : 'Technical SEO', component: <Search className="w-[18px] h-[18px]" /> },
   ];
 
   const scrollToServices = (e: React.MouseEvent) => {
