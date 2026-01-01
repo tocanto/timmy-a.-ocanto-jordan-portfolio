@@ -16,57 +16,67 @@ const Hero: React.FC<HeroProps> = ({ t }) => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center max-w-4xl mx-auto px-4 overflow-hidden">
+    // CAMBIO 1: Quitamos 'justify-center' y 'max-w-4xl mx-auto' del section principal
+    // para manejar el layout completo con flexbox. Añadimos w-full.
+    <section className="relative min-h-screen flex flex-col items-center w-full overflow-hidden">
       
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 space-y-6"
-      >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] md:text-xs font-medium tracking-wide text-accent-blue mb-4">
-          <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          {t.hero.status}
-        </div>
+      {/* CAMBIO 2: Wrapper flexible para el contenido. 
+          'flex-1' hace que ocupe todo el espacio disponible, empujando el botón al final.
+          'justify-center' centra el texto verticalmente en ese espacio. */}
+      <div className="flex-1 flex flex-col justify-center items-center text-center w-full max-w-4xl mx-auto px-4 z-10 relative">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="space-y-6"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] md:text-xs font-medium tracking-wide text-accent-blue mb-4">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            {t.hero.status}
+          </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-500">
-          Timmy A. <br/>
-          <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">Ocanto Jordan</span><span className="text-primary">.</span>
-        </h1>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-500">
+            Timmy A. <br/>
+            <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]">Ocanto Jordan</span><span className="text-primary">.</span>
+          </h1>
 
-        <p className="text-base md:text-xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed font-body">
-          {t.hero.tagline.split('immersive digital experiences').map((part, i, arr) => (
-            <React.Fragment key={i}>
-              {part}
-              {i !== arr.length - 1 && <span className="text-accent-blue font-medium">immersive digital experiences</span>}
-            </React.Fragment>
-          ))}
-        </p>
+          <p className="text-base md:text-xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed font-body">
+            {t.hero.tagline.split('immersive digital experiences').map((part, i, arr) => (
+              <React.Fragment key={i}>
+                {part}
+                {i !== arr.length - 1 && <span className="text-accent-blue font-medium">immersive digital experiences</span>}
+              </React.Fragment>
+            ))}
+          </p>
 
-        <div className="flex flex-wrap gap-4 justify-center pt-8">
-          <a 
-            href="#portfolio"
-            onClick={(e) => handleScrollTo(e, 'portfolio')}
-            className="flex items-center justify-center h-12 px-8 rounded-full bg-primary text-background-dark font-bold text-sm tracking-wide hover:shadow-[0_0_20px_rgba(70,236,19,0.4)] transition-all transform hover:scale-105 active:scale-95"
-          >
-            {t.hero.viewProjects}
-          </a>
-          <a 
-            href="#contact"
-            onClick={(e) => handleScrollTo(e, 'contact')}
-            className="flex items-center justify-center h-12 px-8 rounded-full bg-transparent border border-white/20 text-white font-bold text-sm tracking-wide hover:bg-white/5 hover:border-white/40 transition-all active:scale-95"
-          >
-            {t.hero.contactMe}
-          </a>
-        </div>
-      </motion.div>
+          <div className="flex flex-wrap gap-4 justify-center pt-8">
+            <a 
+              href="#portfolio"
+              onClick={(e) => handleScrollTo(e, 'portfolio')}
+              className="flex items-center justify-center h-12 px-8 rounded-full bg-primary text-background-dark font-bold text-sm tracking-wide hover:shadow-[0_0_20px_rgba(70,236,19,0.4)] transition-all transform hover:scale-105 active:scale-95"
+            >
+              {t.hero.viewProjects}
+            </a>
+            <a 
+              href="#contact"
+              onClick={(e) => handleScrollTo(e, 'contact')}
+              className="flex items-center justify-center h-12 px-8 rounded-full bg-transparent border border-white/20 text-white font-bold text-sm tracking-wide hover:bg-white/5 hover:border-white/40 transition-all active:scale-95"
+            >
+              {t.hero.contactMe}
+            </a>
+          </div>
+        </motion.div>
+      </div>
 
+      {/* CAMBIO 3: Botón de Scroll ahora es parte del flujo (no absolute).
+          'mb-8' le da el margen inferior necesario.
+          Al estar en un flex-col items-center, se centra automáticamente perfecto. */}
       <motion.a 
         href="#about"
         onClick={(e) => handleScrollTo(e, 'about')}
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer group z-20"
+        className="flex flex-col items-center gap-2 cursor-pointer group z-20 mb-8 md:mb-10"
       >
         <span className="text-[10px] uppercase tracking-widest text-gray-300 font-bold group-hover:text-primary transition-colors">Scroll</span>
         <svg 
