@@ -106,7 +106,6 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
             </span>
           </button>
           
-          {/* USAMOS w-12 (48px) PARA GARANTIZAR ACCESIBILIDAD 100/100 */}
           <button 
             className="md:hidden text-white flex items-center justify-center w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -123,8 +122,14 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              className="absolute top-24 left-0 right-0 glass-panel rounded-3xl p-8 flex flex-col gap-6 items-center shadow-2xl border border-white/10 md:hidden overflow-hidden"
+              // CAMBIOS AQUÍ:
+              // 1. Quitamos 'glass-panel' que tenía opacidad baja.
+              // 2. Usamos 'bg-[#050505]/95' para un fondo casi sólido (95% opaco).
+              // 3. 'backdrop-blur-xl' para difuminar mucho más el fondo.
+              // 4. 'border-white/10' para mantener el borde sutil.
+              className="absolute top-24 left-0 right-0 bg-[#050505]/95 backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col gap-6 items-center shadow-2xl md:hidden overflow-hidden z-50"
             >
+              {/* Fondo decorativo sutil */}
               <div className="absolute inset-0 bg-primary/5 pointer-events-none"></div>
               
               {navLinks.map((link) => {
@@ -132,8 +137,9 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
                 return (
                   <a 
                     key={link.id}
+                    // CAMBIO AQUÍ: 'text-gray-200' en lugar de 'text-gray-400' para que se lea mejor
                     className={`text-sm font-black uppercase tracking-[0.3em] transition-colors py-2
-                      ${isActive ? 'text-primary' : 'text-gray-400 hover:text-primary'}
+                      ${isActive ? 'text-primary drop-shadow-[0_0_10px_rgba(70,236,19,0.3)]' : 'text-gray-200 hover:text-primary'}
                     `}
                     href={`#${link.id}`}
                     onClick={(e) => scrollToSection(e, link.id)}
@@ -143,16 +149,16 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang, t }) => {
                 );
               })}
 
-              <div className="h-px w-full bg-white/5 my-2"></div>
+              <div className="h-px w-full bg-white/10 my-2"></div>
 
               <button 
                 onClick={() => {
                   setLang(lang === 'EN' ? 'ES' : 'EN');
                   setIsMobileMenuOpen(false);
                 }}
-                className="flex items-center justify-center rounded-full h-10 px-8 bg-primary text-black font-black text-[10px] tracking-[0.3em] uppercase w-full shadow-[0_0_15px_rgba(70,236,19,0.3)]"
+                className="flex items-center justify-center rounded-full h-12 px-8 bg-primary text-black font-black text-xs tracking-[0.3em] uppercase w-full shadow-[0_0_20px_rgba(70,236,19,0.4)] hover:shadow-[0_0_30px_rgba(70,236,19,0.6)] transition-all"
               >
-                {lang === 'EN' ? 'SPANISH' : 'ENGLISH'}
+                {lang === 'EN' ? 'ESPAÑOL' : 'ENGLISH'}
               </button>
             </motion.div>
           )}
