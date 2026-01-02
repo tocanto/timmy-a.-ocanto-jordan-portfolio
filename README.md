@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://tocanto.dev">
-    <img src="public/images/og-image.png" alt="Timmy A. Ocanto Jordan Portfolio Banner" width="100%">
+    <img src="https://tocanto.devimages/og-image.png" alt="Timmy A. Ocanto Jordan Portfolio Banner" width="100%">
   </a>
 </div>
 
