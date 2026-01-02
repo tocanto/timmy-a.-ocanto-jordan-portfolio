@@ -1,3 +1,11 @@
+<div align="center">
+  <a href="https://tocanto.dev">
+    <img src="public/images/og-image.png" alt="Timmy A. Ocanto Jordan Portfolio Banner" width="100%">
+  </a>
+</div>
+
+<br/>
+
 # Run and deploy the web app
 
 This contains everything you need to run your app locally.
