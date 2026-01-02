@@ -15,14 +15,14 @@ const Hero: React.FC<HeroProps> = ({ t }) => {
     }
   };
 
+  // Lógica para detectar qué frase resaltar según el idioma actual
+  const highlightPhrase = t.hero.tagline.includes('immersive digital experiences')
+    ? 'immersive digital experiences'
+    : 'experiencias digitales inmersivas';
+
   return (
-    // CAMBIO 1: Quitamos 'justify-center' y 'max-w-4xl mx-auto' del section principal
-    // para manejar el layout completo con flexbox. Añadimos w-full.
     <section className="relative min-h-screen flex flex-col items-center w-full overflow-hidden">
       
-      {/* CAMBIO 2: Wrapper flexible para el contenido. 
-          'flex-1' hace que ocupe todo el espacio disponible, empujando el botón al final.
-          'justify-center' centra el texto verticalmente en ese espacio. */}
       <div className="flex-1 flex flex-col justify-center items-center text-center w-full max-w-4xl mx-auto px-4 z-10 relative">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -41,10 +41,11 @@ const Hero: React.FC<HeroProps> = ({ t }) => {
           </h1>
 
           <p className="text-base md:text-xl text-gray-400 font-light max-w-2xl mx-auto leading-relaxed font-body">
-            {t.hero.tagline.split('immersive digital experiences').map((part, i, arr) => (
+            {/* Usamos la variable highlightPhrase en lugar del texto "harcodeado" en inglés */}
+            {t.hero.tagline.split(highlightPhrase).map((part, i, arr) => (
               <React.Fragment key={i}>
                 {part}
-                {i !== arr.length - 1 && <span className="text-accent-blue font-medium">immersive digital experiences</span>}
+                {i !== arr.length - 1 && <span className="text-accent-blue font-medium">{highlightPhrase}</span>}
               </React.Fragment>
             ))}
           </p>
@@ -68,9 +69,6 @@ const Hero: React.FC<HeroProps> = ({ t }) => {
         </motion.div>
       </div>
 
-      {/* CAMBIO 3: Botón de Scroll ahora es parte del flujo (no absolute).
-          'mb-8' le da el margen inferior necesario.
-          Al estar en un flex-col items-center, se centra automáticamente perfecto. */}
       <motion.a 
         href="#about"
         onClick={(e) => handleScrollTo(e, 'about')}
